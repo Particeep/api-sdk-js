@@ -1,1 +1,1 @@
-# Particeep API Client for JavaScript
+# Particeep API Client for JavaScript!
