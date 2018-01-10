@@ -1,1 +1,1 @@
-# api-sdk-js
+# Particeep API Client for JavaScript
