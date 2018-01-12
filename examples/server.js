@@ -1,39 +1,33 @@
 const http = require('http');
 const argv = require('minimist')(process.argv.slice(2));
-const ParticeepClient = require('../lib/api-sdk');
+const routes = require('./routes');
+const controller = require('./controller');
 
 let server = http.createServer(function (req, res) {
-    const client = new ParticeepClient(
-        'https://api.particeep.com/v1',
-        'd6a53e1a-fc8e-4251-9dda-fabbce5f2a2c',
-        '9bb3c122-0272-4bed-a632-19d5d52c7b5e'
-    );
-
-    client.get('info').then(result => {
-        const data = result.data;
-        send200(res, `
-            <ul>
-                <li>Version: ${data.version}</li>
-                <li>DebugEnable: ${data.debugEnable}</li>
-                <li>MetaEnable: ${data.metaEnable}</li>
-            </ul>
-        `);
-    }).catch(error => {
-        send500(res);
-    });
-
-    function sendResponse(res, statusCode, body) {
-        res.writeHead(statusCode, {'Content-Type': 'text/html'});
-        res.write(body);
-        res.end();
+    if (req.method === 'POST' || req.method === 'PUT') {
+        handleRequestWithBody();
+    } else {
+        const url = req.url.split('?');
+        forwardToController(req, res, url[0], url[1]);
     }
 
-    function send200(res, body) {
-        sendResponse(res, 200, body || '<h1>OK</h1>');
+    function handleRequestWithBody() {
+        let body = '';
+        req.on('data', data => body += data);
+        req.on('end', () => {
+            forwardToController(req, res, req.url, body);
+        });
     }
 
-    function send500(res, body) {
-        sendResponse(res, 404, body || '<h1>Error occured</h1>');
+    function forwardToController(req, res, url, params) {
+        const method = controller[routes[req.method + url]];
+        if (method) method(req, res)(parseQueryString(params));
+        else controller[routes['GET/404']](req, res)();
+    }
+
+    function parseQueryString(qs) {
+        if (!qs) return null;
+        return JSON.parse('{"' + decodeURI(qs).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
     }
 });
 
