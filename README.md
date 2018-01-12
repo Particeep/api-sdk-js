@@ -8,10 +8,10 @@ Using npm
 $ npm install https://github.com/Particeep/api-sdk-js.git
 ```
 
-Importing directly compiled sources
+Importing directly compiled source present in /dist folder.
 
 ```
-<script src="..../dist/api-sdk.min.js"/>
+<script src="..../api-sdk.min.js"/>
 ```
 
 
