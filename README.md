@@ -3,9 +3,11 @@
 ### Installation
 
 Using npm
+
 `$ npm install `
 
 Importing directly compiled sources
+
 `<script src="..../dist/api-sdk.min.js"/>`
 
 
