@@ -17,6 +17,8 @@ Importing directly compiled sources
 
 ### Examples
 
+See complete examples: https://github.com/Particeep/api-sdk-js/tree/master/examples .
+
 Initialize the sdk
 ```
 const ParticeepClient = require('../lib/api-sdk');
