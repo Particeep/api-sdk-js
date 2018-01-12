@@ -1,10 +1,10 @@
 const ParticeepClient = require('../lib/api-sdk');
 
-const client = new ParticeepClient(
-    'https://api.particeep.com/v1',
-    'd6a53e1a-fc8e-4251-9dda-fabbce5f2a2c',
-    '9bb3c122-0272-4bed-a632-19d5d52c7b5e'
-);
+const client = new ParticeepClient({
+    baseURL: 'https://api.particeep.com/v1',
+    apiKey: 'd6a53e1a-fc8e-4251-9dda-fabbce5f2a2c',
+    apiSecret: '9bb3c122-0272-4bed-a632-19d5d52c7b5e'
+});
 
 function redirect(res, url) {
     res.statusCode = 302;
