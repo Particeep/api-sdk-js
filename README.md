@@ -5,7 +5,7 @@
 Using npm
 
 ```
-$ npm install
+$ npm install https://github.com/Particeep/api-sdk-js.git
 ```
 
 Importing directly compiled sources
