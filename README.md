@@ -4,11 +4,15 @@
 
 Using npm
 
-```$ npm install ```
+```
+$ npm install
+```
 
 Importing directly compiled sources
 
-```<script src="..../dist/api-sdk.min.js"/>```
+```
+<script src="..../dist/api-sdk.min.js"/>
+```
 
 
 ### Examples
