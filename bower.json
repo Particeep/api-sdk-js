@@ -1,0 +1,33 @@
+{
+  "name": "api-sdk",
+  "main": "./dist/api-sdk.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Particeep/api-sdk-js",
+  "authors": [
+    "Particeep"
+  ],
+  "description": "Promise based HTTP client for the Particeep API",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "xhr",
+    "http",
+    "ajax",
+    "promise",
+    "ParticeepApi"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "*.iml",
+    "examples",
+    "lib",
+    "node_modules",
+    "Gruntfile.js",
+    "index.js",
+    "package.json",
+    "webpack.*.js"
+  ]
+}
