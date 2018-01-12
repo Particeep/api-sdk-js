@@ -70,12 +70,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	var axios = __webpack_require__(62);
 	
 	var ParticeepRequest = function () {
-	    function ParticeepRequest(baseUrl, apiKey, apiSecret) {
+	    function ParticeepRequest(params) {
 	        _classCallCheck(this, ParticeepRequest);
+	
+	        var baseURL = params.baseURL,
+	            apiKey = params.apiKey,
+	            apiSecret = params.apiSecret;
+	
 	
 	        var dateHeader = this._buildDateHeader();
 	        this._http = axios.create({
-	            baseURL: baseUrl,
+	            baseURL: baseURL,
 	            headers: {
 	                Accept: 'application/json',
 	                api_key: apiKey,
@@ -110,9 +115,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return 'PTP:' + apiKey + ':' + signature;
 	        }
 	    }, {
+	        key: '_toQueryString',
+	        value: function _toQueryString(obj) {
+	            var qs = [];
+	            for (var p in obj) {
+	                if (obj[p]) qs.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+	            }return '?' + qs.join('&');
+	        }
+	    }, {
 	        key: 'get',
 	        value: function get(url, params) {
-	            return this._http.get(url, { params: params });
+	            return this._http.get(url + this._toQueryString(params));
 	        }
 	    }, {
 	        key: 'post',
